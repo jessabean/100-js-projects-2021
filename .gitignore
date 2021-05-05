@@ -1,0 +1,18 @@
+# compiled output
+dist
+/tmp
+
+# dependencies
+node_modules
+
+# IDEs and editors
+.editorconfig
+.vscode/*
+!.vscode/launch.json
+
+# misc
+/.sass-cache
+
+# System Files
+.DS_Store
+Thumbs.db
