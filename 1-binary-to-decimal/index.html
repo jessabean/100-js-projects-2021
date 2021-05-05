@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Binary to Decimal Converer</title>
+  <meta name="description" content="Binary to Decimal Converer">
+  <meta name="author" content="jessabean">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  <main>
+    <form class="form">
+      <div class="form__fieldblock">
+        <label>Enter binary</label>
+        <input type="text" class="form__input" minlength="1" maxlength="8" pattern="[0-1]{1,8}" />
+        <span class="form__field-message"></span>
+      </div>
+      <div class="form__footer">
+        <input type="submit" value="Convert to decimal">
+      </div>
+    </form>
+
+    <div class="output"></div>
+  </main>
+
+  <script src="bin2dec.js"></script>
+</body>
+</html>
