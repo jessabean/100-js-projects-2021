@@ -20,7 +20,6 @@ const convertToDecimal = () => {
   }
 
   let converted = sumOfArray(decimals);
-  console.log(`decimal equivalent: ${converted}`);
   return sumOfArray(decimals);
 };
 
