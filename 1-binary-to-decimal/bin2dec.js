@@ -1,7 +1,8 @@
 const form = document.querySelector('.form');
+const outputContainer = document.querySelector('#decimal-output');
 
 const convertToDecimal = () => {
-  const inputField = document.querySelector('.form__input');
+  const inputField = document.querySelector('#binary-input');
   const userInput = inputField.value;
   let decimals = [];
 
@@ -35,7 +36,7 @@ const sumOfArray = (array) => {
 
 const submitForm = function() {
   event.preventDefault();
-  convertToDecimal();
+  outputContainer.value = convertToDecimal();
 }
 
 form.onsubmit = submitForm;

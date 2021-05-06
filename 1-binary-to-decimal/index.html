@@ -8,7 +8,7 @@
   <meta name="description" content="Binary to Decimal Converer">
   <meta name="author" content="jessabean">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="styles.css">
 
 </head>
 
@@ -16,16 +16,19 @@
   <main>
     <form class="form">
       <div class="form__fieldblock">
-        <label>Enter binary</label>
-        <input type="text" class="form__input" minlength="1" maxlength="8" pattern="[0-1]{1,8}" />
-        <span class="form__field-message"></span>
+        <label class="form__label" for="binary-input">Binary</label>
+        <span class="form__field-message">Enter up to 8 binary digits (digits must be 0 or 1)</span>
+        <div class="form__inline-flex">
+          <input type="text" id="binary-input" class="form__input" minlength="1" maxlength="8" pattern="[0-1]{1,8}" />
+          <input type="submit" class="form__submit" value="Convert to decimal">
+        </div>
       </div>
-      <div class="form__footer">
-        <input type="submit" value="Convert to decimal">
+
+      <div class="form__fieldblock">
+        <label class="form__label" for="decimal-output">Decimal</label>
+        <input type="text" id="decimal-output" class="form__input" disabled />
       </div>
     </form>
-
-    <div class="output"></div>
   </main>
 
   <script src="bin2dec.js"></script>
