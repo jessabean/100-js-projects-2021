@@ -11,6 +11,7 @@ const IndexPage = () => (
 
     <ol style={{ maxWidth: `20em`, margin: `0 auto`}}>
       <li><Link to="/projects/1-binary-to-decimal">Binary to Decimal Converter</Link></li>
+      <li><Link to="/projects/2-border-radius-previewer">Border Radius Previewer</Link></li>
     </ol>
 
   </Layout>

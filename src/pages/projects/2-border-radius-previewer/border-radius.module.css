@@ -1,0 +1,37 @@
+:root {
+  --shape-bg: #DCA8B6;
+}
+
+.preview {
+  display: block;
+  height: 10rem;
+  width: 10rem;
+  background: var(--shape-bg);
+}
+
+.form {
+  max-width: 20em;
+  margin: 0 auto;
+}
+
+.form__input,
+.form__label {
+  display: block;
+}
+
+.form__label {
+  font-weight: 700;
+}
+
+.form__input {
+  background: white;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin-right: 0.5em;
+  font-size: 1.5rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.form__fieldblock + .form__fieldblock {
+  margin-top: 1em;
+}
