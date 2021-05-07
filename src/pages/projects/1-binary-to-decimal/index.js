@@ -1,10 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { Helmet } from "react-helmet"
 
 import Layout from "../../../components/layout"
 import Seo from "../../../components/seo"
-import "./style.css"
 import * as pageStyles from "./bin2dec.module.css"
 
 
@@ -85,6 +83,9 @@ export default class BinaryToDecimal extends React.Component {
               <input ref={this.outputContainer} value={this.state.outputValue} type="text" id="decimal-output" className={pageStyles.['form__input']} disabled />
             </div>
           </form>
+        </section>
+        <section className="project-footer">
+          <Link to="/"><span role="img" aria-label="back arrow">⬅</span> Back to homepage</Link>
         </section>
 
       </Layout>

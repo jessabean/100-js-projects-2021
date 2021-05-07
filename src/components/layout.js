@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
             textAlign: `center`
           }}
         >
-          © {new Date().getFullYear()}, Built with 🤓 by
+          © {new Date().getFullYear()}, Built with <span role="img" aria-label="sparkles">✨</span> by
           {` `}
           <a href="https://jessabean.github.io">jessabean</a>
         </footer>

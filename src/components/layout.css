@@ -734,5 +734,11 @@ main {
   text-align: center;
   line-height: 1.2;
   font-size: 0.75em;
-  color: var(--color-gray);
+  color: var(--color-gray-light);
+}
+
+.project-footer {
+  margin-top: 5rem;
+  font-size: 0.95rem;
+  text-align: center;
 }
