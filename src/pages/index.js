@@ -5,19 +5,14 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <Layout style={{ display: `flex` }}>
     <Seo title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <h1 style={{ textAlign: `center` }}>A bunch of little JS projects, made with 🤓</h1>
 
-    <ol>
-
+    <ol style={{ maxWidth: `20em`, margin: `0 auto`}}>
+      <li><Link to="/projects/1-binary-to-decimal">Binary to Decimal Converter</Link></li>
     </ol>
 
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-    </p>
   </Layout>
 )
 

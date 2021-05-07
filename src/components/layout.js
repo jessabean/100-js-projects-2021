@@ -25,23 +25,20 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <div className="page-wrapper">
+        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <main>{children}</main>
         <footer
           style={{
-            marginTop: `2rem`,
+            maxWidth: `40em`,
+            margin: `0 auto`,
+            padding: `3rem`,
+            textAlign: `center`
           }}
         >
-          © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, Built with 🤓 by
           {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <a href="https://jessabean.github.io">jessabean</a>
         </footer>
       </div>
     </>
