@@ -1,0 +1,59 @@
+:root {
+  --disabled-bg: #DCDDE5;
+  --focus-border: #BFEDC1;
+}
+
+.form {
+  max-width: 20em;
+  margin: 0 auto;
+}
+
+.form__input,
+.form__label {
+  display: block;
+}
+
+.form__label {
+  font-weight: 700;
+}
+
+.form__input {
+  background: white;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin-right: 0.5em;
+  font-size: 1.5rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.form__input[disabled] {
+  background: var(--disabled-bg);
+}
+
+.form-input:focus {
+  border: 1px solid var(--focus-border);
+}
+
+.form__field-message {
+  display: block;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.form__fieldblock + .form__fieldblock {
+  margin-top: 1em;
+}
+
+.form__inline-flex {
+  display: flex;
+}
+
+.form__submit {
+  background: var(--color-yellow);
+  border: 1px solid var(--color-yellow-dark);
+  border-radius: 3px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.15rem;
+  padding: 0.75em;
+}
