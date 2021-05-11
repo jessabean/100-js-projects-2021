@@ -1,17 +1,16 @@
 :root {
   --shape-bg: #DCA8B6;
+  --border: #959AB2;
 }
 
-.preview {
-  display: block;
-  height: 10rem;
-  width: 10rem;
-  background: var(--shape-bg);
+.preview__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 3em;
 }
 
 .form {
-  max-width: 20em;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .form__input,
@@ -20,18 +19,56 @@
 }
 
 .form__label {
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .form__input {
+  width: 100%;
   background: white;
   border-radius: 4px;
-  padding: 0.5em;
+  padding: 0.25em;
   margin-right: 0.5em;
   font-size: 1.5rem;
   font-family: 'Open Sans', sans-serif;
 }
 
-.form__fieldblock + .form__fieldblock {
+.form__fieldset {
+  margin: 0;
+  padding: 0.25em;
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  border: 1px solid var(--border);
+}
+
+.form__fieldset + .form__fieldset {
   margin-top: 1em;
+}
+
+legend {
+  font-size: 1rem;
+  grid-column: 1/ span 2;
+  display: block;
+  padding: 0 0.25em;
+}
+
+.form__fieldblock {
+  grid-column: span 1;
+}
+
+.form__fieldblock + .form__fieldblock {
+  margin-left: 0.5em;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview__object {
+  display: block;
+  height: 15em;
+  width: 15em;
+  background: var(--shape-bg);
 }

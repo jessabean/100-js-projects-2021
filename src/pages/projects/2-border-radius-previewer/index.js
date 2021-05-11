@@ -35,7 +35,6 @@ export default class BinaryToDecimal extends React.Component {
         borderTopRightRadius: '0',
         borderBottomRightRadius: '0',
         borderBottomLeftRadius: '0',
-        background: '#fff'
       }
     };
   }
@@ -57,7 +56,6 @@ export default class BinaryToDecimal extends React.Component {
       borderTopRightRadius: `${this.state.radius.topRightRadiusValue}${this.state.radius.topRightRadiusUnitValue}`,
       borderBottomRightRadius: `${this.state.radius.bottomRightRadiusValue}${this.state.radius.bottomRightRadiusUnitValue}`,
       borderBottomLeftRadius: `${this.state.radius.bottomLeftRadiusValue}${this.state.radius.bottomLeftRadiusUnitValue}`,
-      background: '#f0f'
     };
     this.setState({ styles: newStyles });
   }
@@ -72,58 +70,57 @@ export default class BinaryToDecimal extends React.Component {
             <p className="project-description">Change the border radius properties and preview how they will look on your shape.</p>
           </header>
 
-          <form ref={this.formRef} className={pageStyles.form}>
-            <fieldset className={pageStyles.['form__fieldset']}>
-              <legend>top-left</legend>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="topLeftRadius">value</label>
-                <input ref={this.topLeftRadiusInput} value={this.state.topLeftRadiusValue} onChange={this.onInputChange} type="text" id="topLeftRadius" className={pageStyles.['form__input']} />
-              </div>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="topLeftRadiusUnit">unit</label>
-                <input ref={this.topLeftRadiusUnitInput} value={this.state.topLeftRadiusUnitValue} onChange={this.onInputChange} type="text" id="topLeftRadiusUnit" className={pageStyles.['form__input']} />
-              </div>
-            </fieldset>
-            <fieldset className={pageStyles.['form__fieldset']}>
-              <legend>top-right</legend>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="topRightRadius">value</label>
-                <input ref={this.topRightRadiusInput} value={this.state.topRightRadiusValue} onChange={this.onInputChange} type="text" id="topRightRadius" className={pageStyles.['form__input']} />
-              </div>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="topRightRadiusUnit">unit</label>
-                <input ref={this.topRightRadiusUnitInput} value={this.state.topRightRadiusUnitValue} onChange={this.onInputChange} type="text" id="topRightRadiusUnit" className={pageStyles.['form__input']} />
-              </div>
-            </fieldset>
-            <fieldset className={pageStyles.['form__fieldset']}>
-              <legend>bottom-right</legend>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="bottomRightRadius">value</label>
-                <input ref={this.bottomRightRadiusInput} value={this.state.bottomRightRadiusValue} onChange={this.onInputChange} type="text" id="bottomRightRadius" className={pageStyles.['form__input']} />
-              </div>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="bottomRightRadiusUnit">unit</label>
-                <input ref={this.bottomRightRadiusUnitInput} value={this.state.bottomRightRadiusUnitValue} onChange={this.onInputChange} type="text" id="bottomRightRadiusUnit" className={pageStyles.['form__input']} />
-              </div>
-            </fieldset>
-            <fieldset className={pageStyles.['form__fieldset']}>
-              <legend>bottom-left</legend>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="bottomLeftRadius">value</label>
-                <input ref={this.bottomLeftRadiusInput} value={this.state.bottomLeftRadiusValue} onChange={this.onInputChange} type="text" id="bottomLeftRadius" className={pageStyles.['form__input']} />
-              </div>
-              <div className={pageStyles.['form__fieldblock']}>
-                <label className={pageStyles.['form__label']} htmlFor="bottomLeftRadiusUnit">unit</label>
-                <input ref={this.bottomLeftRadiusUnitInput} value={this.state.bottomLeftRadiusUnitValue} onChange={this.onInputChange} type="text" id="bottomLeftRadiusUnit" className={pageStyles.['form__input']} />
-              </div>
-            </fieldset>
-          </form>
-
-
-          <div className={pageStyles.['preview']}
-            style={this.state.styles}></div>
-
-
+          <div className={pageStyles.['preview__wrapper']}>
+            <form ref={this.formRef} className={pageStyles.form}>
+              <fieldset className={pageStyles.['form__fieldset']}>
+                <legend>top-left</legend>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="topLeftRadius">value</label>
+                  <input ref={this.topLeftRadiusInput} value={this.state.topLeftRadiusValue} onChange={this.onInputChange} type="text" id="topLeftRadius" className={pageStyles.['form__input']} />
+                </div>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="topLeftRadiusUnit">unit</label>
+                  <input ref={this.topLeftRadiusUnitInput} value={this.state.topLeftRadiusUnitValue} onChange={this.onInputChange} type="text" id="topLeftRadiusUnit" className={pageStyles.['form__input']} />
+                </div>
+              </fieldset>
+              <fieldset className={pageStyles.['form__fieldset']}>
+                <legend>top-right</legend>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="topRightRadius">value</label>
+                  <input ref={this.topRightRadiusInput} value={this.state.topRightRadiusValue} onChange={this.onInputChange} type="text" id="topRightRadius" className={pageStyles.['form__input']} />
+                </div>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="topRightRadiusUnit">unit</label>
+                  <input ref={this.topRightRadiusUnitInput} value={this.state.topRightRadiusUnitValue} onChange={this.onInputChange} type="text" id="topRightRadiusUnit" className={pageStyles.['form__input']} />
+                </div>
+              </fieldset>
+              <fieldset className={pageStyles.['form__fieldset']}>
+                <legend>bottom-right</legend>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="bottomRightRadius">value</label>
+                  <input ref={this.bottomRightRadiusInput} value={this.state.bottomRightRadiusValue} onChange={this.onInputChange} type="text" id="bottomRightRadius" className={pageStyles.['form__input']} />
+                </div>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="bottomRightRadiusUnit">unit</label>
+                  <input ref={this.bottomRightRadiusUnitInput} value={this.state.bottomRightRadiusUnitValue} onChange={this.onInputChange} type="text" id="bottomRightRadiusUnit" className={pageStyles.['form__input']} />
+                </div>
+              </fieldset>
+              <fieldset className={pageStyles.['form__fieldset']}>
+                <legend>bottom-left</legend>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="bottomLeftRadius">value</label>
+                  <input ref={this.bottomLeftRadiusInput} value={this.state.bottomLeftRadiusValue} onChange={this.onInputChange} type="text" id="bottomLeftRadius" className={pageStyles.['form__input']} />
+                </div>
+                <div className={pageStyles.['form__fieldblock']}>
+                  <label className={pageStyles.['form__label']} htmlFor="bottomLeftRadiusUnit">unit</label>
+                  <input ref={this.bottomLeftRadiusUnitInput} value={this.state.bottomLeftRadiusUnitValue} onChange={this.onInputChange} type="text" id="bottomLeftRadiusUnit" className={pageStyles.['form__input']} />
+                </div>
+              </fieldset>
+            </form>
+            <div className={pageStyles.['preview']}>
+              <div className={pageStyles.['preview__object']} style={this.state.styles}></div>
+            </div>
+          </div>
 
         </section>
         <section className="project-footer">
