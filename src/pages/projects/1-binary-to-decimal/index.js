@@ -15,13 +15,38 @@ export default class BinaryToDecimal extends React.Component {
 
     this.state = {
       inputValue: '',
-      outputValue: ''
+      outputValue: '',
+      formIsValid: true,
+      error: null
     };
   }
 
   onInputChange = e => {
     this.setState({ inputValue: e.target.value });
   };
+
+  handleValidation = () => {
+    const input = this.state.inputValue;
+    let isValid = true;
+    let errorMessage;
+    let regex = /[^0-1]/g;
+
+    if (!input.length) {
+      isValid = false;
+      errorMessage = 'Please enter a value'
+    } else if (typeof input !== "undefined"){
+      if(input.search(regex) > -1){
+        isValid = false;
+        errorMessage = 'Inputs must be 0 or 1';
+      }
+    }
+
+    this.setState({error: errorMessage, formIsValid: isValid}, () => {
+      if(!isValid) {
+        this.resetOutput()
+      }
+    });
+  }
 
   convertToDecimal = () => {
     const userInput = this.inputContainer.current.value;
@@ -53,12 +78,19 @@ export default class BinaryToDecimal extends React.Component {
     }, 0)
   }
 
+  resetOutput = () => {
+    this.setState({ outputValue: ''});
+  }
+
   submitForm = event => {
     event.preventDefault();
+    this.handleValidation();
     this.setState({ outputValue: this.convertToDecimal() });
   }
 
   render () {
+    let formIsValid = this.state.formIsValid;
+    let formError = this.state.error;
     return (
       <Layout>
         <Seo title="Binary to decimal converter" />
@@ -69,11 +101,14 @@ export default class BinaryToDecimal extends React.Component {
           </header>
 
           <form onSubmit={this.submitForm} ref={this.formRef} className={pageStyles.form}>
+            { !formIsValid &&
+              <div className={pageStyles.['form__error']}>{ formError }</div>
+            }
             <div className={pageStyles.['form__fieldblock']}>
               <label className={pageStyles.['form__label']} htmlFor="binary-input">Binary</label>
               <span className={pageStyles.['form__fieldMessage']}>Enter up to 8 binary digits (digits must be 0 or 1)</span>
               <div className={pageStyles.['form__inlineFlex']}>
-                <input ref={this.inputContainer} onChange={this.onInputChange} value={this.state.inputValue} type="text" id="binary-input" className={pageStyles.['form__input']} minLength="1" maxLength="8" pattern="[0-1]{1,8}" />
+                <input ref={this.inputContainer} onChange={this.onInputChange} onBlur={this.onInputChange} value={this.state.inputValue} type="text" id="binary-input" className={pageStyles.['form__input']} minLength="1" maxLength="8" />
                 <input type="submit" className={pageStyles.['form__submit']} value="Convert to decimal" />
               </div>
             </div>
