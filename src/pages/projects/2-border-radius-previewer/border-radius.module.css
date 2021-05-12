@@ -27,9 +27,10 @@
   width: 100%;
   background: white;
   border-radius: 4px;
+  border: none;
   padding: 0.25em;
   margin-right: 0.5em;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -50,6 +51,18 @@ legend {
   grid-column: 1/ span 2;
   display: block;
   padding: 0 0.25em;
+}
+
+.form__select {
+  font-size: 1rem;
+  background: white;
+  border-radius: 4px;
+  border: none;
+  padding: 0.25em;
+}
+
+option {
+  min-height: 0;
 }
 
 .form__fieldblock {
