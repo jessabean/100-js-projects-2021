@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import Select from "react-select"
 
 import Layout from "../../../components/layout"
 import Seo from "../../../components/seo"
@@ -10,15 +9,10 @@ import * as pageStyles from "./border-radius.module.css"
 export default class BinaryToDecimal extends React.Component {
   constructor(props) {
     super(props);
+    this.corners = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft'];
+    this.values = [];
+    this.units = [];
     this.formRef = React.createRef();
-    this.topLeftRadiusInput = React.createRef();
-    this.topRightRadiusInput = React.createRef();
-    this.bottomLeftRadiusInput = React.createRef();
-    this.bottomRightRadiusInput = React.createRef();
-    this.topLeftRadiusUnitInput = React.createRef();
-    this.topRightRadiusUnitInput = React.createRef();
-    this.bottomLeftRadiusUnitInput = React.createRef();
-    this.bottomRightRadiusUnitInput = React.createRef();
 
     this.state = {
       radius: {
@@ -26,10 +20,10 @@ export default class BinaryToDecimal extends React.Component {
         topRightRadiusValue: '',
         bottomLeftRadiusValue: '',
         bottomRightRadiusValue: '',
-        topLeftRadiusUnitValue: 'px',
-        topRightRadiusUnitValue: 'px',
-        bottomLeftRadiusUnitValue: 'px',
-        bottomRightRadiusUnitValue: 'px',
+        topLeftRadiusUnit: 'px',
+        topRightRadiusUnit: 'px',
+        bottomLeftRadiusUnit: 'px',
+        bottomRightRadiusUnit: 'px',
       },
       styles: {
         borderTopLeftRadius: '0',
@@ -38,20 +32,10 @@ export default class BinaryToDecimal extends React.Component {
         borderBottomLeftRadius: '0',
       }
     };
-
-    this.corners = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft'];
-
-    this.options = [
-      { value: 'px', label: 'px' },
-      { value: '%', label: '%' },
-      { value: 'em', label: 'em' },
-      { value: 'rem', label: 'rem' }
-    ];
   }
 
-
   onInputChange = e => {
-    const key = `${e.target.id}Value`;
+    const key = `${e.target.id}`;
     const newValue = e.target.value;
     const newRadius = { [key]: newValue };
 
@@ -62,12 +46,20 @@ export default class BinaryToDecimal extends React.Component {
   };
 
   updatePreview = () => {
-    const newStyles = {
-      borderTopLeftRadius: `${this.state.radius.topLeftRadiusValue}${this.state.radius.topLeftRadiusUnitValue}`,
-      borderTopRightRadius: `${this.state.radius.topRightRadiusValue}${this.state.radius.topRightRadiusUnitValue}`,
-      borderBottomRightRadius: `${this.state.radius.bottomRightRadiusValue}${this.state.radius.bottomRightRadiusUnitValue}`,
-      borderBottomLeftRadius: `${this.state.radius.bottomLeftRadiusValue}${this.state.radius.bottomLeftRadiusUnitValue}`,
-    };
+    let newStyles = {};
+    let cornersArray = this.corners.slice();
+
+    for (let i=0; i<cornersArray.length; i++) {
+      let cornerString = cornersArray[i].charAt(0).toUpperCase() + cornersArray[i].slice(1);
+      let cssProp = `border${cornerString}Radius`;
+      let stateValueString = cornersArray[i] + 'RadiusValue';
+      let stateUnitString = cornersArray[i] + 'RadiusUnit';
+      let newValue = this.state.radius[`${stateValueString}`];
+      let newUnit = this.state.radius[`${stateUnitString}`];
+
+      newStyles[cssProp] = `${newValue}${newUnit}`;
+    }
+
     this.setState({ styles: newStyles });
   }
 
@@ -82,38 +74,37 @@ export default class BinaryToDecimal extends React.Component {
           </header>
           <div className={pageStyles.['preview__wrapper']}>
             <form ref={this.formRef} className={pageStyles.form}>
-              { this.corners.map((corner) => {
-                let radiusValue = `${corner}RadiusValue`;
-                let radiusInput = `${corner}RadiusInput`;
+              { this.corners.map((corner, i) => {
                 let unitId = `${corner}RadiusUnit`;
-                let valueId = `${corner}Radius`;
-                let radiusUnitValue = `${corner}RadiusUnitValue`;
-                let radiusUnitInput = `${corner}RadiusUnitInput`;
+                let valueId = `${corner}RadiusValue`;
 
                 return (
-                  <fieldset className={pageStyles.['form__fieldset']}>
+                  <fieldset key={corner} className={pageStyles.['form__fieldset']}>
                     <legend>{ corner }</legend>
                     <div className={pageStyles.['form__fieldblock']}>
                       <label className={pageStyles.['form__label']} htmlFor={ valueId }>value</label>
-                      <input ref={this.radiusInput}
-                        value={this.state.radiusValue}
-                        onChange={this.onInputChange}
+                      <input ref={a => this.values[i] = a}
+                        value={this.state.radius.valueId}
+                        onBlur={this.onInputChange}
                         id={ valueId }
                         className={pageStyles.['form__input']}
-                        type="text" />
+                        type="text"
+                        data-property="value" />
                     </div>
                     <div className={pageStyles.['form__fieldblock']}>
                       <label className={pageStyles.['form__label']} htmlFor={unitId}>unit</label>
                       <select
-                        value={this.state.radiusUnitValue}
+                        value={this.state.radius.unitId}
                         onChange={this.onInputChange}
-                        ref={this.radiusUnitInput}
+                        ref={a => this.units[i] = a}
                         id={unitId}
                         className={pageStyles.['form__select']}
+                        data-property="unit"
                       >
                         <option value="px">px</option>
                         <option value="%">%</option>
                         <option value="em">em</option>
+                        <option value="rem">rem</option>
                       </select>
                     </div>
                   </fieldset>
