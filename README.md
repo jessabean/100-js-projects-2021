@@ -2,8 +2,8 @@
 100 mini projects in 2021, just for fun. Hoping to do better than [my last failed attempt](https://github.com/jessabean/100-javascript-projects). Inspired by Jennifer Dewalt's [180 websites in 180 days](https://jenniferdewalt.com/index.html) and Elle Luna's [100 day project](https://thegreatdiscontent.com/100days).
 
 ## Projects
-1. - [x] [Binary to Decimal Converter](https://github.com/jessabean/100-js-projects-2021/tree/main/1-binary-to-decimal)
-2. - [ ] Border Radius Previewer
+1. - [x] [Binary to Decimal Converter](https://github.com/jessabean/100-js-projects-2021/tree/main/src/pages/projects/1-binary-to-decimal)
+2. - [x] [Border Radius Previewer](https://github.com/jessabean/100-js-projects-2021/tree/main/src/pages/projects/2-border-radius-previewer)
 3. - [ ] Christmas Lights
 4. - [ ] Cause Effect App
 5. - [ ] Color Cycle
