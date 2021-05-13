@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-
+import Clipboard from 'react-clipboard.js';
 import Layout from "../../../components/layout"
 import Seo from "../../../components/seo"
 import * as pageStyles from "./border-radius.module.css"
@@ -87,6 +87,17 @@ export default class BinaryToDecimal extends React.Component {
   }
 
   render () {
+    let stylesPreview;
+     if (this.state.previewCss.length) {
+      stylesPreview = <>
+        <Clipboard data-clipboard-text={this.state.previewCss}
+          button-title="Copy CSS">Copy CSS</Clipboard>
+        <pre>{this.state.previewCss}</pre>
+        </>
+     } else {
+      stylesPreview = <pre>// CSS output goes here</pre>
+     }
+
     return (
       <Layout>
         <Seo title="Binary to decimal converter" />
@@ -138,8 +149,7 @@ export default class BinaryToDecimal extends React.Component {
               <div className={pageStyles.['preview__object']} style={this.state.styles}></div>
             </div>
             <div className={pageStyles.['preview__css']}>
-              <h2>Copy CSS</h2>
-              <pre>{this.state.previewCss}</pre>
+              { stylesPreview }
             </div>
           </div>
 
