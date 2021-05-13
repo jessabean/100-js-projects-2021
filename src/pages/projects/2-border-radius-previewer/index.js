@@ -13,6 +13,7 @@ export default class BinaryToDecimal extends React.Component {
     this.values = [];
     this.units = [];
     this.formRef = React.createRef();
+    this.previewCss = React.createRef();
 
     this.state = {
       radius: {
@@ -30,7 +31,8 @@ export default class BinaryToDecimal extends React.Component {
         borderTopRightRadius: '0',
         borderBottomRightRadius: '0',
         borderBottomLeftRadius: '0',
-      }
+      },
+      previewCss: ''
     };
   }
 
@@ -55,12 +57,33 @@ export default class BinaryToDecimal extends React.Component {
       let stateValueString = cornersArray[i] + 'RadiusValue';
       let stateUnitString = cornersArray[i] + 'RadiusUnit';
       let newValue = this.state.radius[`${stateValueString}`];
-      let newUnit = this.state.radius[`${stateUnitString}`];
+      let newUnit = newValue.length ? this.state.radius[`${stateUnitString}`] : '';
 
-      newStyles[cssProp] = `${newValue}${newUnit}`;
+      if (newValue.length) {
+        newStyles[cssProp] = `${newValue}${newUnit}`;
+      }
     }
 
-    this.setState({ styles: newStyles });
+    this.setState({ styles: newStyles }, () => this.formatStyles(newStyles));
+  }
+
+  formatStyles = (styles) => {
+    let styleBlock = {};
+
+    for (const [key, value] of Object.entries(styles)) {
+      let style = {};
+      let dashed = key.replace(/[A-Z]/g, m => "-" + m.toLowerCase());
+      styleBlock.[dashed] = value;
+    }
+
+    let formattedCss = JSON.stringify(styleBlock)
+      .replaceAll('"', '')
+      .replaceAll(':', ': ')
+      .replaceAll(',', ';\n  ')
+      .replace('{', '{\n  ')
+      .replace('}', ';\n}');
+
+    this.setState({previewCss: formattedCss})
   }
 
   render () {
@@ -113,6 +136,10 @@ export default class BinaryToDecimal extends React.Component {
             </form>
             <div className={pageStyles.['preview']}>
               <div className={pageStyles.['preview__object']} style={this.state.styles}></div>
+            </div>
+            <div className={pageStyles.['preview__css']}>
+              <h2>Copy CSS</h2>
+              <pre>{this.state.previewCss}</pre>
             </div>
           </div>
 
