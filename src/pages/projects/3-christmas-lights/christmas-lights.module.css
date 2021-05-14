@@ -1,0 +1,27 @@
+
+.preview__wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1em;
+}
+
+.light__wrapper {
+  position: relative;
+  width: 3em;
+}
+
+.light {
+  display: inline-block;
+  height: 3em;
+  width: 3em;
+  border: none;
+  border-radius: 50%;
+}
+
+/* HexColorPicker */
+.light__picker {
+  position: absolute !important;
+  left: 50%;
+  top: 105%;
+  transform: translateX(-50%);
+}
