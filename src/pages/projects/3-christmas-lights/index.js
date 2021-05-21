@@ -24,7 +24,7 @@ function ChristmasLights() {
         </header>
         <div className={pageStyles.['preview__wrapper']}>
           {lightRefs.current.map((el, i) =>
-            <Light key={i} ref={el => (lightRefs.current[i] = el)} onClick="foo()" />
+            <Light key={i} />
           )}
         </div>
       </section>

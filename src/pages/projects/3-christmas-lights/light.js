@@ -1,56 +1,60 @@
-import * as React from "react"
+import React, { useState, useRef, useEffect } from "react"
 import * as pageStyles from "./christmas-lights.module.css"
 import { HexColorPicker } from "react-colorful";
 
-export default class Light extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      color: '#fffff',
-      showPicker: false
-    }
+function Light() {
+  const [color, setColor] = useState('#fffff');
+  const [showPicker, setPicker] = useState(false);
+  const [currentKey, setKeyCode] = useState(null);
+  const colorRef = useRef(color);
+  const pickerRef = useRef(showPicker);
+  const keyCodeRef = useRef(currentKey);
 
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+  const handleColorChange = (color) => {
+    setColor(color);
   }
 
-  setColor = (color) => {
-    this.setState({color: color});
+  const hidePicker = () => {
+    setPicker(false);
   }
 
-  hidePicker = () => {
-    this.setState({showPicker: false})
+  const togglePicker = (event) => {
+    pickerRef.current === true
+      ? setPicker(false)
+      : setPicker(true);
   }
 
-  togglePicker = (event) => {
-    this.state.showPicker
-      ? this.setState({showPicker: false})
-      : this.setState({showPicker: true});
-  }
-
-
-  handleKeyPress = (e) => {
-    this.setState({currentKey: e.keyCode});
-    if(e.keyCode === 27) {
-      // need to hide the current picker
+  const handleKeyPress = (e) => {
+    setKeyCode(e.keyCode);
+    if(keyCodeRef.current === 27) {
+      hidePicker();
     }
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+  });
 
-  render () {
-    return (
-    <>
-      <div className={pageStyles.['light__wrapper']}>
-        {this.state.showPicker &&
-          <div className={pageStyles.['light__picker']}>
-            <HexColorPicker color={this.state.color} onChange={this.setColor} />
-          </div>
-        }
-        <button className={pageStyles.['light']} style={{ background: this.state.color }} onClick={this.togglePicker}></button>
-      </div>
-    </>
-    )
-  }
+  useEffect(() => {
+    colorRef.current = color
+  }, [color]);
+
+  useEffect(() => {
+    pickerRef.current = showPicker
+  }, [showPicker]);
+
+  return (
+  <>
+    <div className={pageStyles.['light__wrapper']}>
+      {showPicker &&
+        <div className={pageStyles.['light__picker']}>
+          <HexColorPicker color={color} onChange={handleColorChange} />
+        </div>
+      }
+      <button className={pageStyles.['light']} style={{ background: colorRef.current }} onClick={togglePicker}></button>
+    </div>
+  </>
+  )
 }
+
+export default Light;
