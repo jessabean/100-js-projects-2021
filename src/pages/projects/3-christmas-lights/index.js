@@ -10,10 +10,6 @@ function ChristmasLights() {
   const stringOfLights = 7;
   const lightRefs = useRef([...new Array(stringOfLights)].map(() => React.createRef()));
 
-  const foo = () => {
-    console.log('foo');
-  }
-
   return (
     <Layout>
       <Seo title="Christmas Lights Simulator" />
