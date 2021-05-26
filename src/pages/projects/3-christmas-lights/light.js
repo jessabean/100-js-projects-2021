@@ -1,44 +1,62 @@
-import React, { useState, useRef, useEffect, useCallback } from "react"
-import * as pageStyles from "./christmas-lights.module.css"
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import * as pageStyles from "./christmas-lights.module.css";
 import { HexColorPicker } from "react-colorful";
 
 function Light() {
   const [color, setColor] = useState('#fffff');
   const [showPicker, setPicker] = useState(false);
+  const clickListener = useRef();
 
   const handleColorChange = (color) => {
     setColor(color);
   }
 
-  const globalClickListener = (event) => {
-    setPicker(false);
-  }
-
   const togglePicker = (event) => {
     if (showPicker === true) {
-      document.addEventListener('click', globalClickListener);
+      // document.addEventListener('click', globalClickListener);
       setPicker(false);
     } else {
       setPicker(true);
     }
   }
 
-  const handleKeyPress = (e) => {
-    if(e.keyCode === 27) {
+  const handleKeyPress = (event) => {
+    if(event.keyCode === 27) {
       setPicker(false);
     }
   }
+
+  const handleClickOutside = (event) => {
+    if (clickListener.current.contains(event.target)) {
+      return;
+    }
+    setPicker(false);
+  };
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
   });
 
+  useEffect(() => {
+    if (showPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showPicker]);
+
   return (
   <>
     <div className={pageStyles.['light__wrapper']}>
-      {showPicker &&
-        <div className={pageStyles.['light__picker']}>
-          <HexColorPicker color={color} onChange={handleColorChange} />
+      {!!showPicker &&
+        <div ref={clickListener}>
+          <div className={pageStyles.['light__picker']}>
+            <HexColorPicker color={color} onChange={handleColorChange} />
+          </div>
         </div>
       }
       <button className={pageStyles.['light']} style={{ background: color }} onClick={togglePicker}></button>
