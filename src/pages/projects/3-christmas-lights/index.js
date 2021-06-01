@@ -1,14 +1,34 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useCallback } from "react"
 import Light from './light'
 
 import Layout from "../../../components/layout"
 import Seo from "../../../components/seo"
-import * as pageStyles from "./christmas-lights.module.css"
+import styles from "./christmas-lights.css"
+import classNames from 'classnames/bind';
+
 
 function ChristmasLights() {
   const [currentKey, setState] = useState(null);
+  const [isAnimated, setAnimated] = useState(false);
   const stringOfLights = 7;
   const lightRefs = useRef([...new Array(stringOfLights)].map(() => React.createRef()));
+
+  const startLights = () => {
+    if(isAnimated === true) {
+      setAnimated(false);
+    } else {
+      setAnimated(true);
+    }
+  };
+
+  const cx = classNames.bind(styles);
+
+  let wrapperClasses = cx(
+    'preview__wrapper',
+    {
+      'animated' : isAnimated
+    }
+  );
 
   return (
     <Layout>
@@ -18,7 +38,10 @@ function ChristmasLights() {
           <h1 className="project-headline">Christmas lights</h1>
           <p className="project-description">Click a light to change its color. Click the "Start" button to see the lights in action!</p>
         </header>
-        <div className={pageStyles.['preview__wrapper']}>
+        <div className={'preview__config'}>
+          <button className={'preview__start-btn'} onClick={startLights}>Start</button>
+        </div>
+        <div className={wrapperClasses}>
           {lightRefs.current.map((el, i) =>
             <Light key={i} />
           )}

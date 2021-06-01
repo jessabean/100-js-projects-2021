@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import * as pageStyles from "./christmas-lights.module.css";
+import styles from "./christmas-lights.css";
 import { HexColorPicker } from "react-colorful";
 
 function Light() {
@@ -13,7 +13,6 @@ function Light() {
 
   const togglePicker = (event) => {
     if (showPicker === true) {
-      // document.addEventListener('click', globalClickListener);
       setPicker(false);
     } else {
       setPicker(true);
@@ -51,15 +50,15 @@ function Light() {
 
   return (
   <>
-    <div className={pageStyles.['light__wrapper']}>
+    <div className={'light__wrapper'}>
       {!!showPicker &&
         <div ref={clickListener}>
-          <div className={pageStyles.['light__picker']}>
+          <div className={'light__picker'}>
             <HexColorPicker color={color} onChange={handleColorChange} />
           </div>
         </div>
       }
-      <button className={pageStyles.['light']} style={{ background: color }} onClick={togglePicker}></button>
+      <button className={'light'} style={{ background: color }} onClick={togglePicker}></button>
     </div>
   </>
   )

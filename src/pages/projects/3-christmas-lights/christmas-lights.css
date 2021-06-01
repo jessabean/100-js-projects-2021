@@ -5,6 +5,19 @@
   grid-gap: 1em;
 }
 
+.preview__config {
+  margin: 2em 0;
+  text-align: center;
+}
+
+.preview__start-btn {
+  background: var(--color-blue);
+  border: 1px solid var(--color-blue-dark);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.25em 0.5em;
+}
+
 .light__wrapper {
   position: relative;
   width: 3em;
