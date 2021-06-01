@@ -23,6 +23,22 @@
   width: 3em;
 }
 
+.light--animated.light--animated0 {
+  animation: pulse 1.25s infinite;
+}
+
+.light--animated.light--animated1 {
+  animation: pulse 1.5s infinite;
+}
+
+.light--animated.light--animated2 {
+  animation: pulse 1.75s infinite;
+}
+
+.light--animated.light--animated3 {
+  animation: pulse 2s infinite;
+}
+
 .light {
   display: inline-block;
   height: 3em;
@@ -37,4 +53,19 @@
   left: 50%;
   top: 105%;
   transform: translateX(-50%);
+}
+
+/* Pulsing light animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }

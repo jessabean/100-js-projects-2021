@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./christmas-lights.css";
 import { HexColorPicker } from "react-colorful";
+import classNames from 'classnames/bind';
 
-function Light() {
+function Light({animated}) {
   const [color, setColor] = useState('#fffff');
   const [showPicker, setPicker] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(animated);
   const clickListener = useRef();
 
   const handleColorChange = (color) => {
@@ -12,6 +14,7 @@ function Light() {
   }
 
   const togglePicker = (event) => {
+    setIsAnimated(false);
     if (showPicker === true) {
       setPicker(false);
     } else {
@@ -22,6 +25,7 @@ function Light() {
   const handleKeyPress = (event) => {
     if(event.keyCode === 27) {
       setPicker(false);
+      setIsAnimated(false);
     }
   }
 
@@ -32,8 +36,14 @@ function Light() {
     setPicker(false);
   };
 
+  const assignAnimation = () => {
+    const speed = Math.floor(Math.random() * 4);
+    return speed.toString();
+  };
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
+    setIsAnimated(animated);
   });
 
   useEffect(() => {
@@ -48,9 +58,19 @@ function Light() {
     };
   }, [showPicker]);
 
+  const cx = classNames.bind(styles);
+
+  let lightClasses = cx(
+    'light',
+    `light--animated${assignAnimation()}`,
+    {
+      'light--animated' : isAnimated
+    }
+  );
+
   return (
   <>
-    <div className={'light__wrapper'}>
+    <div className="light__wrapper">
       {!!showPicker &&
         <div ref={clickListener}>
           <div className={'light__picker'}>
@@ -58,7 +78,7 @@ function Light() {
           </div>
         </div>
       }
-      <button className={'light'} style={{ background: color }} onClick={togglePicker}></button>
+      <button className={lightClasses} style={{ background: color }} onClick={togglePicker}></button>
     </div>
   </>
   )

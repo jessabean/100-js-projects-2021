@@ -39,11 +39,13 @@ function ChristmasLights() {
           <p className="project-description">Click a light to change its color. Click the "Start" button to see the lights in action!</p>
         </header>
         <div className={'preview__config'}>
-          <button className={'preview__start-btn'} onClick={startLights}>Start</button>
+          <button className={'preview__start-btn'} onClick={startLights}>
+            {isAnimated ? 'Stop' : 'Start'}
+          </button>
         </div>
         <div className={wrapperClasses}>
           {lightRefs.current.map((el, i) =>
-            <Light key={i} />
+            <Light key={i} animated={isAnimated} />
           )}
         </div>
       </section>

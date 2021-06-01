@@ -4,7 +4,7 @@
 ## Projects
 1. - [x] [Binary to Decimal Converter](https://github.com/jessabean/100-js-projects-2021/tree/main/src/pages/projects/1-binary-to-decimal)
 2. - [x] [Border Radius Previewer](https://github.com/jessabean/100-js-projects-2021/tree/main/src/pages/projects/2-border-radius-previewer)
-3. - [ ] Christmas Lights
+3. - [x] Christmas Lights
 4. - [ ] Cause Effect App
 5. - [ ] Color Cycle
 6. - [ ] Countdown Timer
